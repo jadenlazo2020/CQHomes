@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chris Quirarte — REALTOR® | London Properties</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0a0a0a;
+    --blueprint:#111111;
+    --blueprint-deep:#000000;
+    --blueprint-line:#9a9a9a;
+    --blueprint-line-dim:#5c5c5c;
+    --paper:#ffffff;
+    --paper-dim:#dcdcdc;
+    --brass:#ffffff;
+    --rust:#000000;
+    --white:#ffffff;
+    --display: 'Fraunces', serif;
+    --mono: 'IBM Plex Mono', monospace;
+    --body: 'Inter', sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--body);
+    line-height:1.5;
+    overflow-x:hidden;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important;}
+  }
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    opacity:0.7;
+  }
+  h1,h2,h3{font-family:var(--display);font-weight:500;letter-spacing:-0.01em;}
+
+  /* dimension-line callout, used throughout as the signature device */
+  .dim{
+    position:relative;
+    padding-left:18px;
+  }
+  .dim::before{
+    content:"";
+    position:absolute;
+    left:0;top:0.55em;bottom:0.4em;
+    width:9px;
+    border-left:1px solid currentColor;
+    border-top:1px solid currentColor;
+    border-bottom:1px solid currentColor;
+    opacity:0.45;
+  }
+
+  :focus-visible{outline:2px solid var(--brass); outline-offset:3px;}
+
+  /* ---------- NAV ---------- */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:50;
+    background:rgba(0,0,0,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid rgba(255,255,255,0.25);
+  }
+  nav.wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    height:76px;
+    color:var(--white);
+  }
+  .brand{display:flex;align-items:center;gap:12px;font-family:var(--display);font-size:19px;}
+  .brand .logo-mark{
+    height:38px;width:38px;display:flex;align-items:center;justify-content:center;
+    flex-shrink:0;
+  }
+  .brand .logo-mark img{height:100%;width:100%;object-fit:contain;display:block;filter:invert(1);}
+  .navlinks{display:flex;gap:34px;align-items:center;}
+  .navlinks a{
+    font-family:var(--mono); font-size:12px; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--white); opacity:0.75; transition:opacity .2s;
+    padding:6px 0;
+  }
+  .navlinks a:hover{opacity:1;}
+  .navlinks .ig{
+    opacity:1; border:1px solid var(--blueprint-line-dim); padding:8px 14px; border-radius:2px;
+    transition: border-color .2s, background .2s;
+  }
+  .navlinks .ig:hover{border-color:var(--brass); background:rgba(255,255,255,0.08);}
+  .navtoggle{display:none;}
+  @media (max-width:760px){
+    .navlinks a:not(.ig){display:none;}
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background:
+      radial-gradient(circle at 82% 18%, rgba(255,255,255,0.14), transparent 45%),
+      var(--blueprint);
+    color:var(--white);
+    padding:168px 0 90px;
+    position:relative;
+    overflow:hidden;
+    border-bottom:1px solid rgba(255,255,255,0.25);
+  }
+  .hero::before{ /* grid paper texture */
+    content:"";
+    position:absolute; inset:0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.09) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.09) 1px, transparent 1px);
+    background-size:42px 42px;
+    mask-image:linear-gradient(to bottom, black, transparent 85%);
+    pointer-events:none;
+  }
+  .hero-grid{
+    display:grid; grid-template-columns:1.05fr 0.95fr; gap:40px; align-items:center;
+    position:relative; z-index:2;
+  }
+  .hero-tag{
+    font-family:var(--mono); font-size:12px; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--brass); margin-bottom:22px; display:flex; align-items:center; gap:10px;
+  }
+  .hero-tag::before{content:"";width:26px;height:1px;background:var(--brass);}
+  .hero h1{
+    font-size:clamp(34px,4.4vw,56px);
+    line-height:1.08;
+    max-width:16ch;
+  }
+  .hero h1 em{font-style:italic; color:var(--brass); font-weight:400;}
+  .hero p.lede{
+    font-size:17px; max-width:42ch; margin-top:24px; color:rgba(255,255,255,0.78);
+  }
+  .hero-ctas{display:flex; gap:14px; margin-top:38px; flex-wrap:wrap;}
+  .btn{
+    font-family:var(--mono); font-size:12px; letter-spacing:0.08em; text-transform:uppercase;
+    padding:15px 26px; border-radius:2px; display:inline-flex; align-items:center; gap:8px;
+    transition: transform .2s ease, background .2s ease, border-color .2s ease;
+    cursor:pointer; border:1px solid transparent;
+  }
+  .btn-primary{background:var(--brass); color:var(--blueprint-deep); font-weight:500;}
+  .btn-primary:hover{transform:translateY(-2px);}
+  .btn-ghost{border-color:rgba(255,255,255,0.35); color:var(--white);}
+  .btn-ghost:hover{border-color:var(--brass); color:var(--brass);}
+
+  .hero-social{display:flex; gap:18px; margin-top:30px; align-items:center;}
+
+  /* ---------- SOCIAL ICONS (shared component) ---------- */
+  .social-icon{
+    width:52px; height:52px; border-radius:50%; border:1px solid currentColor;
+    display:flex; align-items:center; justify-content:center;
+    transition: background .2s ease, color .2s ease, transform .2s ease;
+    flex-shrink:0;
+  }
+  .social-icon svg{width:24px; height:24px;}
+  .social-icon:hover{transform:translateY(-3px);}
+  .hero-social .social-icon{color:var(--white);}
+  .hero-social .social-icon:hover{background:var(--white); color:var(--blueprint-deep);}
+  .social-row .social-icon{color:var(--ink);}
+  .social-row .social-icon:hover{background:var(--ink); color:var(--paper);}
+  footer .social-icon{color:rgba(255,255,255,0.7); width:42px; height:42px;}
+  footer .social-icon svg{width:19px;height:19px;}
+  footer .social-icon:hover{background:var(--white); color:var(--blueprint-deep);}
+
+  /* ---------- TITLE BLOCK (about credential plate) ---------- */
+  .title-block{
+    background:var(--blueprint); color:var(--white); padding:30px 28px;
+    border:1px solid var(--paper-dim);
+  }
+  .title-block .tb-row{
+    display:flex; justify-content:space-between; gap:12px; padding:10px 0;
+    border-top:1px solid rgba(255,255,255,0.18); font-family:var(--mono); font-size:12.5px;
+  }
+  .title-block .tb-row:first-child{border-top:none; padding-top:0;}
+  .title-block .tb-k{color:rgba(255,255,255,0.5); letter-spacing:0.06em; text-transform:uppercase;}
+  .title-block .tb-v{text-align:right;}
+  .title-block .tb-logo{background:#fff; padding:10px 16px; display:inline-block; margin-bottom:22px;}
+  .title-block .tb-logo img{height:24px; width:auto; display:block;}
+
+  .hero-figure{position:relative;}
+  .hero-figure .frame{
+    position:relative; aspect-ratio:3/4; overflow:hidden;
+  }
+  .hero-figure .frame::before, .hero-figure .frame::after{
+    content:""; position:absolute; width:26px; height:26px; border-color:rgba(255,255,255,0.55); z-index:3;
+  }
+  .hero-figure .frame::before{top:-1px; left:-1px; border-top:1px solid; border-left:1px solid;}
+  .hero-figure .frame::after{bottom:-1px; right:-1px; border-bottom:1px solid; border-right:1px solid;}
+  .hero-figure img{
+    width:100%; height:100%; object-fit:cover; object-position:top center;
+    opacity:0; animation:fadein 1.1s ease forwards 0.4s;
+  }
+  .hero-figure .cap{
+    display:flex; justify-content:space-between; margin-top:14px;
+    font-family:var(--mono); font-size:10.5px; letter-spacing:0.06em; text-transform:uppercase;
+    color:rgba(255,255,255,0.45);
+  }
+  @keyframes fadein{to{opacity:1;}}
+
+  .title-block-hero{
+    margin-top:34px; border-top:1px solid rgba(255,255,255,0.25); padding-top:22px;
+    display:flex; gap:28px; flex-wrap:wrap;
+  }
+  .title-block-hero div{font-family:var(--mono); font-size:12px;}
+  .title-block-hero .tb-k{display:block; color:rgba(255,255,255,0.5); letter-spacing:0.06em; text-transform:uppercase; font-size:10.5px; margin-bottom:5px;}
+  .title-block-hero .tb-v{color:var(--white);}
+
+  /* ---------- SECTION SCAFFOLDING ---------- */
+  section{padding:100px 0;}
+  .section-head{display:flex; justify-content:space-between; align-items:flex-end; gap:24px; margin-bottom:56px; flex-wrap:wrap;}
+  .section-head h2{font-size:clamp(28px,3.4vw,42px);}
+  .section-head .eyebrow{margin-bottom:12px;}
+  .section-head .desc{max-width:34ch; font-size:14.5px; color:#4a4a4a;}
+
+  .reveal{opacity:0; transform:translateY(22px); transition:opacity .7s ease, transform .7s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  /* ---------- DRIVING CAR STRIP ---------- */
+  .car-strip{
+    position:relative; overflow:hidden;
+    height:120px;
+    background:var(--blueprint-deep);
+    border-top:1px solid rgba(255,255,255,0.15);
+    border-bottom:1px solid rgba(255,255,255,0.15);
+  }
+  .car-strip .road-line{
+    position:absolute; left:0; right:0; bottom:28px;
+    height:0; border-top:2px dashed rgba(255,255,255,0.25);
+  }
+  .car-strip .driving-car{
+    position:absolute; top:50%; left:0;
+    height:78px; width:auto;
+    transform:translate(calc(100vw + 100%), -50%);
+    animation:drive-across 16s linear infinite;
+  }
+  @keyframes drive-across{
+    0%{transform:translate(calc(100vw + 100%), -50%);}
+    100%{transform:translate(-100%, -50%);}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .car-strip .driving-car{animation:none; left:50%; transform:translate(-50%,-50%);}
+  }
+
+  /* ---------- ABOUT ---------- */
+  .about{background:var(--paper);}
+  .about-grid{display:grid; grid-template-columns:0.85fr 1.15fr; gap:64px; align-items:start;}
+  .about-copy p{font-size:16.5px; color:#2b2b2b; margin-bottom:18px; max-width:56ch;}
+  .about-copy p.lede{font-family:var(--display); font-size:22px; color:var(--ink); line-height:1.4;}
+
+  /* ---------- LISTINGS / TIKTOK FEED ---------- */
+  .listings{background:var(--blueprint-deep); color:var(--white);}
+  .listings .section-head .desc{color:rgba(255,255,255,0.65);}
+  @media (max-width:900px){.about-grid{grid-template-columns:1fr;}}
+  @media (max-width:640px){.hero-grid{grid-template-columns:1fr;} .hero{padding-top:140px;}}
+
+  .tiktok-embed-wrap{
+    background:#ffffff;
+    border:1px solid rgba(255,255,255,0.15);
+    padding:24px;
+    min-height:200px;
+    overflow:hidden;
+  }
+  .tiktok-embed-cap{
+    display:flex; justify-content:space-between; margin-top:14px;
+    font-family:var(--mono); font-size:10.5px; letter-spacing:0.06em; text-transform:uppercase;
+    color:rgba(255,255,255,0.45);
+  }
+
+  .listings-footer{margin-top:44px; text-align:center;}
+
+  /* ---------- TESTIMONIALS ---------- */
+  .testimonials{background:var(--blueprint);}
+  .testi-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px; align-items:start;}
+  @media (max-width:900px){.testi-grid{grid-template-columns:1fr;}}
+  .testi{
+    background:var(--paper); color:var(--ink); padding:30px 26px; position:relative;
+    border-top:3px solid var(--ink);
+  }
+  .testi p{font-family:var(--display); font-size:15.5px; line-height:1.5; font-style:italic; margin-bottom:12px;}
+  .testi p:last-of-type{margin-bottom:0;}
+  .stars{display:flex; gap:3px; margin-top:14px;}
+  .stars svg{width:15px; height:15px; fill:#f5c518;}
+  .testi .who{margin-top:20px; font-family:var(--mono); font-size:11.5px; text-transform:uppercase; letter-spacing:0.05em; color:#6b6b6b; display:flex; justify-content:space-between; align-items:center;}
+  .stamp{
+    font-family:var(--mono); font-size:10px; color:var(--rust); border:1px solid var(--rust);
+    padding:3px 7px; transform:rotate(-4deg); border-radius:2px; letter-spacing:0.05em;
+  }
+
+  /* ---------- CONTACT ---------- */
+  .contact{background:var(--paper);}
+  .contact-grid{display:grid; grid-template-columns:0.9fr 1.1fr; gap:64px; align-items:start;}
+  @media (max-width:800px){.contact-grid{grid-template-columns:1fr;}}
+  .contact-intro h2{font-size:clamp(26px,3vw,36px); margin:14px 0 30px; line-height:1.25; max-width:22ch;}
+  .contact-buttons{display:flex; gap:14px; flex-wrap:wrap;}
+  .contact-buttons .btn-primary{background:var(--ink); color:var(--paper);}
+  .contact-buttons .btn-ghost{border-color:var(--ink); color:var(--ink);}
+  .contact-buttons .btn-ghost:hover{background:var(--ink); color:var(--paper);}
+
+  .social-row{display:flex; gap:16px; margin-top:34px; flex-wrap:wrap;}
+
+  .contact-form{display:flex; flex-direction:column; gap:18px; background:var(--paper); border:1px solid var(--paper-dim); padding:32px;}
+  .hidden-field{position:absolute; left:-9999px;}
+  .field{display:flex; flex-direction:column; gap:8px;}
+  .field-row{display:flex; gap:18px;}
+  .field-row .field{flex:1;}
+  @media (max-width:520px){.field-row{flex-direction:column; gap:18px;}}
+  .field label{font-family:var(--mono); font-size:11px; letter-spacing:0.06em; text-transform:uppercase; color:#4a4a4a;}
+  .field label .opt{text-transform:none; letter-spacing:0; opacity:0.6;}
+  .field input, .field select, .field textarea{
+    background:transparent; border:none; border-bottom:1px solid var(--paper-dim);
+    padding:10px 2px; font-family:var(--body); font-size:15px; color:var(--ink);
+    transition:border-color .2s; appearance:none; -webkit-appearance:none; border-radius:0;
+  }
+  .field select{
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%230a0a0a' stroke-width='1.6'%3E%3Cpath d='M5 8l5 5 5-5'/%3E%3C/svg%3E");
+    background-repeat:no-repeat; background-position:right 2px center; background-size:16px;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus{border-color:var(--ink); outline:none;}
+  .field textarea{resize:vertical; min-height:80px;}
+  .contact-form .btn-primary{align-self:flex-start; border:none; margin-top:6px;}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--blueprint-deep); color:rgba(255,255,255,0.7); padding-top:44px;}
+  .footer-grid{display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:28px; padding-bottom:34px; border-bottom:1px solid rgba(255,255,255,0.15);}
+  .footer-brand{display:flex; align-items:center; gap:20px; flex-wrap:wrap;}
+  .footer-logo{height:34px; width:auto; background:#fff; padding:8px 12px;}
+  .footer-details{display:flex; flex-direction:column; gap:5px; font-family:var(--mono); font-size:12px; letter-spacing:0.02em;}
+  .footer-details a:hover{color:var(--white);}
+  .footer-bottom{padding:20px 32px; font-family:var(--mono); font-size:11px; letter-spacing:0.04em; color:rgba(255,255,255,0.4);}
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <a href="#top" class="brand"><span class="logo-mark"><img src="CQ-Logo.png" alt="Chris Quirarte logo"></span> Chris Quirarte</a>
+    <div class="navlinks">
+      <a href="#listings">Listings</a>
+      <a href="#about">About</a>
+      <a href="#testimonials">Testimonials</a>
+      <a href="#contact">Contact</a>
+      <a class="ig" href="tel:+12097779777">Call or Text</a>
+    </div>
+  </nav>
+</header>
+
+<section class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="hero-tag">REALTOR® · Lic. #02236973 · London Properties</div>
+      <h1>Your Local Real Estate Resource in <em>the Central Valley.</em></h1>
+      <p class="lede">Born and raised in the 209, I bring a deep connection to the Central Valley and a passion for helping people achieve their real estate goals. With a determined, goal-oriented approach, I focus on clear communication, personalized service, and delivering results for every client.</p>
+      <div class="hero-ctas">
+        <a href="#listings" class="btn btn-primary">See Latest Posts</a>
+        <a href="tel:+12097779777" class="btn btn-ghost">Call (209) 777-9777</a>
+        <a href="sms:+12097779777" class="btn btn-ghost">Text Chris</a>
+      </div>
+      <div class="hero-social">
+        <a class="social-icon" href="https://instagram.com/chris_quirarte_" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a class="social-icon" href="https://www.tiktok.com/@_chrisquirarte21" target="_blank" rel="noopener" aria-label="TikTok">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 3v10.6a3.4 3.4 0 1 1-2.4-3.26"/><path d="M14 3c.4 2.2 2 3.9 4.2 4.2"/></svg>
+        </a>
+        <a class="social-icon" href="https://www.facebook.com/chris.quirarte.512576" target="_blank" rel="noopener" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M14 8.5h-1.5A1.8 1.8 0 0 0 10.7 10.3V12M9 12h3.6M12 12v6.8"/></svg>
+        </a>
+      </div>
+      <div class="title-block-hero">
+        <div><span class="tb-k">Brokerage</span><span class="tb-v">London Properties</span></div>
+        <div><span class="tb-k">Office</span><span class="tb-v">2605 First St, Atwater, CA</span></div>
+        <div><span class="tb-k">License</span><span class="tb-v">DRE #02236973</span></div>
+      </div>
+    </div>
+    <div class="hero-figure">
+      <div class="frame">
+        <img src="chris-headshot-cutout.png" alt="Chris Quirarte, REALTOR® at London Properties">
+      </div>
+      <div class="cap"><span>CHRIS QUIRARTE</span><span>ATWATER, CA</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="car-strip">
+  <div class="road-line"></div>
+  <img src="car-drive.png" alt="Chris Quirarte's branded car" class="driving-car">
+</div>
+
+<section class="about" id="about">
+  <div class="wrap about-grid">
+    <div class="title-block reveal">
+      <div class="tb-logo"><img src="london-properties-logo.png" alt="London Properties"></div>
+      <div class="tb-row"><span class="tb-k">Name</span><span class="tb-v">Chris Quirarte</span></div>
+      <div class="tb-row"><span class="tb-k">Title</span><span class="tb-v">REALTOR®</span></div>
+      <div class="tb-row"><span class="tb-k">License</span><span class="tb-v">DRE #02236973</span></div>
+      <div class="tb-row"><span class="tb-k">Brokerage</span><span class="tb-v">London Properties</span></div>
+      <div class="tb-row"><span class="tb-k">Office</span><span class="tb-v">2605 First St<br>Atwater, CA 95301</span></div>
+      <div class="tb-row"><span class="tb-k">Phone</span><span class="tb-v">(209) 777-9777</span></div>
+    </div>
+    <div class="about-copy reveal">
+      <p class="eyebrow">About</p>
+      <p class="lede">With a passion and commitment to helping others, I am dedicated to helping my clients achieve their goals — whether it's buying, selling, or investing.</p>
+      <p>As a former collegiate athlete with a background rooted in teamwork, dedication, and goal-setting, I bring a unique perspective to the real estate process — determination and passion that have now found a new field to attack in the world of real estate.</p>
+      <p>My approach is centered on understanding your needs, communicating transparently, and delivering results that exceed your expectations. When you choose me as your real estate agent, you're not just getting a professional; you're gaining a trusted advisor and a relentless advocate for your best interests.</p>
+    </div>
+  </div>
+</section>
+
+<section class="listings" id="listings">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <p class="eyebrow">Latest From TikTok</p>
+        <h2>Follow Along</h2>
+      </div>
+      <p class="desc">Market updates, new listings, and behind-the-scenes — straight from @_chrisquirarte21.</p>
+    </div>
+    <div class="tiktok-embed-wrap reveal">
+      <div class="sk-tiktok-feed" data-embed-id="25706888"></div>
+      <script src="https://widgets.sociablekit.com/tiktok-feed/widget.js" defer></script>
+    </div>
+    <div class="tiktok-embed-cap"><span>@_CHRISQUIRARTE21</span><span>LIVE FEED — AUTO-UPDATES</span></div>
+    <div class="listings-footer reveal">
+      <a href="https://www.tiktok.com/@_chrisquirarte21" target="_blank" rel="noopener" class="btn btn-ghost">Follow on TikTok</a>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials" id="testimonials">
+  <div class="wrap">
+    <div class="section-head reveal" style="color:#fff;">
+      <div>
+        <p class="eyebrow" style="color:#9a9a9a;">Client Notes</p>
+        <h2>Signed & Approved</h2>
+      </div>
+    </div>
+    <div class="testi-grid">
+      <div class="testi reveal">
+        <p>"Couldn't have asked for a better experience buying my home. From start to finish, he made the entire process smooth, straightforward, and way less stressful than I expected. He was always available when I had questions, kept me updated throughout the whole process, and made sure I understood everything before moving forward.</p>
+        <p>What I appreciated most was that he genuinely looked out for me and made sure I was making the right decision, not just trying to close a sale. Professional, knowledgeable, reliable, and someone I'd absolutely trust again.</p>
+        <p>If you're looking to buy or sell a home, I highly recommend him."</p>
+        <div class="stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.7 7-6.3-3.9-6.3 3.9 1.7-7L2 9.2l7.1-.6z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.7 7-6.3-3.9-6.3 3.9 1.7-7L2 9.2l7.1-.6z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.7 7-6.3-3.9-6.3 3.9 1.7-7L2 9.2l7.1-.6z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.7 7-6.3-3.9-6.3 3.9 1.7-7L2 9.2l7.1-.6z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.7 7-6.3-3.9-6.3 3.9 1.7-7L2 9.2l7.1-.6z"/></svg>
+        </div>
+        <div class="who"><span>— Wuan Mejia</span><span class="stamp">Approved</span></div>
+      </div>
+      <div class="testi reveal">
+        <p>"I was so grateful to have Chris as my realtor for my first home purchase. Chris made the home buying process very seamless. He was always available to answer any questions I had. I highly recommend Chris to anyone looking to buy or sell a home!"</p>
+        <div class="stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.7 7-6.3-3.9-6.3 3.9 1.7-7L2 9.2l7.1-.6z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.7 7-6.3-3.9-6.3 3.9 1.7-7L2 9.2l7.1-.6z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.7 7-6.3-3.9-6.3 3.9 1.7-7L2 9.2l7.1-.6z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.7 7-6.3-3.9-6.3 3.9 1.7-7L2 9.2l7.1-.6z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.7 7-6.3-3.9-6.3 3.9 1.7-7L2 9.2l7.1-.6z"/></svg>
+        </div>
+        <div class="who"><span>— Mikayla Mota</span><span class="stamp">Approved</span></div>
+      </div>
+      <div class="testi reveal">
+        <p>"Working with Christian was an absolute pleasure from start to finish. From day one, his professionalism stood out — he was always remarkably punctual and precise with every detail, ensuring nothing fell through the cracks. Christian is a genuinely nice, friendly person with a truly good heart who cares about his clients. If you want a seamless homebuying experience with someone you can trust, I cannot recommend Christian enough!"</p>
+        <div class="stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.7 7-6.3-3.9-6.3 3.9 1.7-7L2 9.2l7.1-.6z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.7 7-6.3-3.9-6.3 3.9 1.7-7L2 9.2l7.1-.6z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.7 7-6.3-3.9-6.3 3.9 1.7-7L2 9.2l7.1-.6z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.7 7-6.3-3.9-6.3 3.9 1.7-7L2 9.2l7.1-.6z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.7 7-6.3-3.9-6.3 3.9 1.7-7L2 9.2l7.1-.6z"/></svg>
+        </div>
+        <div class="who"><span>— Juan Mendoza</span><span class="stamp">Approved</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap contact-grid">
+    <div class="contact-intro reveal">
+      <p class="eyebrow">Get in Touch</p>
+      <h2>Buying, selling, or just curious? Reach out directly.</h2>
+      <div class="contact-buttons">
+        <a href="tel:+12097779777" class="btn btn-primary">Call (209) 777-9777</a>
+        <a href="sms:+12097779777" class="btn btn-ghost">Text Chris</a>
+      </div>
+      <div class="social-row">
+        <a class="social-icon" href="https://instagram.com/chris_quirarte_" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a class="social-icon" href="https://www.tiktok.com/@_chrisquirarte21" target="_blank" rel="noopener" aria-label="TikTok">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 3v10.6a3.4 3.4 0 1 1-2.4-3.26"/><path d="M14 3c.4 2.2 2 3.9 4.2 4.2"/></svg>
+        </a>
+        <a class="social-icon" href="https://www.facebook.com/chris.quirarte.512576" target="_blank" rel="noopener" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M14 8.5h-1.5A1.8 1.8 0 0 0 10.7 10.3V12M9 12h3.6M12 12v6.8"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <form class="contact-form reveal" name="website-interest" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" action="/thank-you.html">
+      <input type="hidden" name="form-name" value="website-interest">
+      <p class="hidden-field"><label>Don't fill this out: <input name="bot-field"></label></p>
+      <div class="field">
+        <label for="cf-name">Name</label>
+        <input id="cf-name" name="name" type="text" required>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="cf-email">Email</label>
+          <input id="cf-email" name="email" type="email" required>
+        </div>
+        <div class="field">
+          <label for="cf-phone">Phone</label>
+          <input id="cf-phone" name="phone" type="tel" required>
+        </div>
+      </div>
+      <div class="field">
+        <label for="cf-interest">I'm interested in</label>
+        <select id="cf-interest" name="interest" required>
+          <option value="" disabled selected>Select one</option>
+          <option>Buying</option>
+          <option>Selling</option>
+          <option>Just Looking</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="cf-msg">Message <span class="opt">(optional)</span></label>
+        <textarea id="cf-msg" name="message"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Send</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-grid">
+    <div class="footer-brand">
+      <img src="london-properties-logo.png" alt="London Properties" class="footer-logo">
+      <div class="footer-details">
+        <span>Chris Quirarte, REALTOR® · DRE #02236973</span>
+        <span>2605 First St, Atwater, CA 95301</span>
+        <span><a href="tel:+12097779777">(209) 777-9777</a></span>
+      </div>
+    </div>
+    <div class="social-row">
+      <a class="social-icon" href="https://instagram.com/chris_quirarte_" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/></svg>
+      </a>
+      <a class="social-icon" href="https://www.tiktok.com/@_chrisquirarte21" target="_blank" rel="noopener" aria-label="TikTok">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 3v10.6a3.4 3.4 0 1 1-2.4-3.26"/><path d="M14 3c.4 2.2 2 3.9 4.2 4.2"/></svg>
+      </a>
+      <a class="social-icon" href="https://www.facebook.com/chris.quirarte.512576" target="_blank" rel="noopener" aria-label="Facebook">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M14 8.5h-1.5A1.8 1.8 0 0 0 10.7 10.3V12M9 12h3.6M12 12v6.8"/></svg>
+      </a>
+    </div>
+  </div>
+  <div class="wrap footer-bottom"><span>© 2026 Chris Quirarte · London Properties</span></div>
+</footer>
+
+<script>
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  },{threshold:0.15});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
