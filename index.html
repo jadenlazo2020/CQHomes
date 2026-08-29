@@ -308,6 +308,9 @@
 
   .contact-form{display:flex; flex-direction:column; gap:18px; background:var(--paper); border:1px solid var(--paper-dim); padding:32px;}
   .hidden-field{position:absolute; left:-9999px;}
+  .form-status{font-family:var(--mono); font-size:12.5px; margin-top:-6px; min-height:16px;}
+  .form-status.success{color:#1a7a3c;}
+  .form-status.error{color:#b02a2a;}
   .field{display:flex; flex-direction:column; gap:8px;}
   .field-row{display:flex; gap:18px;}
   .field-row .field{flex:1;}
@@ -504,9 +507,10 @@
       </div>
     </div>
 
-    <form class="contact-form reveal" name="website-interest" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" action="/thank-you.html">
-      <input type="hidden" name="form-name" value="website-interest">
-      <p class="hidden-field"><label>Don't fill this out: <input name="bot-field"></label></p>
+    <form class="contact-form reveal" id="contact-form">
+      <input type="hidden" name="access_key" value="c16df3a2-b139-4a5c-93ef-cdbfc100eaab">
+      <input type="hidden" name="subject" value="New lead from the website">
+      <input type="checkbox" name="botcheck" class="hidden-field" tabindex="-1" autocomplete="off">
       <div class="field">
         <label for="cf-name">Name</label>
         <input id="cf-name" name="name" type="text" required>
@@ -535,6 +539,7 @@
         <textarea id="cf-msg" name="message"></textarea>
       </div>
       <button type="submit" class="btn btn-primary">Send</button>
+      <p class="form-status" id="form-status"></p>
     </form>
   </div>
 </section>
@@ -569,6 +574,44 @@
     entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
   },{threshold:0.15});
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  const contactForm = document.getElementById('contact-form');
+  const formStatus = document.getElementById('form-status');
+  if (contactForm) {
+    contactForm.addEventListener('submit', function(e){
+      e.preventDefault();
+      const btn = contactForm.querySelector('button[type="submit"]');
+      const originalText = btn.textContent;
+      btn.textContent = 'Sending...';
+      btn.disabled = true;
+      formStatus.textContent = '';
+      formStatus.className = 'form-status';
+
+      const formData = new FormData(contactForm);
+      fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: formData
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.success) {
+          window.location.href = 'thank-you.html';
+        } else {
+          formStatus.textContent = 'Something went wrong — please call or text (209) 777-9777 instead.';
+          formStatus.className = 'form-status error';
+          btn.textContent = originalText;
+          btn.disabled = false;
+        }
+      })
+      .catch(() => {
+        formStatus.textContent = 'Something went wrong — please call or text (209) 777-9777 instead.';
+        formStatus.className = 'form-status error';
+        btn.textContent = originalText;
+        btn.disabled = false;
+      });
+    });
+  }
 </script>
 
 </body>
