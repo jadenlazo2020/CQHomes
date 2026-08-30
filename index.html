@@ -103,6 +103,7 @@
   /* ---------- HERO ---------- */
   .hero{
     background:
+      url('watermark-tile.png') repeat,
       radial-gradient(circle at 82% 18%, rgba(255,255,255,0.14), transparent 45%),
       var(--blueprint);
     color:var(--white);
@@ -227,7 +228,7 @@
   .car-strip{
     position:relative; overflow:hidden;
     height:120px;
-    background:var(--blueprint-deep);
+    background: url('watermark-tile.png') repeat, var(--blueprint-deep);
     border-top:1px solid rgba(255,255,255,0.15);
     border-bottom:1px solid rgba(255,255,255,0.15);
   }
@@ -250,13 +251,13 @@
   }
 
   /* ---------- ABOUT ---------- */
-  .about{background:var(--paper);}
+  .about{background: url('watermark-tile.png') repeat, var(--paper);}
   .about-grid{display:grid; grid-template-columns:0.85fr 1.15fr; gap:64px; align-items:start;}
   .about-copy p{font-size:16.5px; color:#2b2b2b; margin-bottom:18px; max-width:56ch;}
   .about-copy p.lede{font-family:var(--display); font-size:22px; color:var(--ink); line-height:1.4;}
 
   /* ---------- LISTINGS / TIKTOK FEED ---------- */
-  .listings{background:var(--blueprint-deep); color:var(--white);}
+  .listings{background: url('watermark-tile.png') repeat, var(--blueprint-deep); color:var(--white);}
   .listings .section-head .desc{color:rgba(255,255,255,0.65);}
   @media (max-width:900px){.about-grid{grid-template-columns:1fr;}}
   @media (max-width:640px){.hero-grid{grid-template-columns:1fr;} .hero{padding-top:140px;}}
@@ -277,7 +278,7 @@
   .listings-footer{margin-top:44px; text-align:center;}
 
   /* ---------- TESTIMONIALS ---------- */
-  .testimonials{background:var(--blueprint);}
+  .testimonials{background: url('watermark-tile.png') repeat, var(--blueprint);}
   .testi-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px; align-items:start;}
   @media (max-width:900px){.testi-grid{grid-template-columns:1fr;}}
   .testi{
@@ -295,7 +296,7 @@
   }
 
   /* ---------- CONTACT ---------- */
-  .contact{background:var(--paper);}
+  .contact{background: url('watermark-tile.png') repeat, var(--paper);}
   .contact-grid{display:grid; grid-template-columns:0.9fr 1.1fr; gap:64px; align-items:start;}
   @media (max-width:800px){.contact-grid{grid-template-columns:1fr;}}
   .contact-intro h2{font-size:clamp(26px,3vw,36px); margin:14px 0 30px; line-height:1.25; max-width:22ch;}
@@ -331,7 +332,7 @@
   .contact-form .btn-primary{align-self:flex-start; border:none; margin-top:6px;}
 
   /* ---------- FOOTER ---------- */
-  footer{background:var(--blueprint-deep); color:rgba(255,255,255,0.7); padding-top:44px;}
+  footer{background: url('watermark-tile.png') repeat, var(--blueprint-deep); color:rgba(255,255,255,0.7); padding-top:44px;}
   .footer-grid{display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:28px; padding-bottom:34px; border-bottom:1px solid rgba(255,255,255,0.15);}
   .footer-brand{display:flex; align-items:center; gap:20px; flex-wrap:wrap;}
   .footer-logo{height:34px; width:auto; background:#fff; padding:8px 12px;}
