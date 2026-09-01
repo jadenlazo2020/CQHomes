@@ -107,7 +107,7 @@
       radial-gradient(circle at 82% 18%, rgba(255,255,255,0.14), transparent 45%),
       var(--blueprint);
     color:var(--white);
-    padding:168px 0 90px;
+    padding:64px 0 90px;
     position:relative;
     overflow:hidden;
     border-bottom:1px solid rgba(255,255,255,0.25);
@@ -223,10 +223,6 @@
     border-top:1px solid rgba(255,255,255,0.15);
     border-bottom:1px solid rgba(255,255,255,0.15);
   }
-  .car-strip .road-line{
-    position:absolute; left:0; right:0; bottom:28px;
-    height:0; border-top:2px dashed rgba(255,255,255,0.25);
-  }
   .car-strip .driving-car{
     position:absolute; top:50%; left:0;
     height:78px; width:auto;
@@ -251,7 +247,7 @@
   .listings{background: url('watermark-single.png') no-repeat center center, var(--blueprint-deep); color:var(--white);}
   .listings .section-head .desc{color:rgba(255,255,255,0.65);}
   @media (max-width:900px){.about-grid{grid-template-columns:1fr;}}
-  @media (max-width:640px){.hero-grid{grid-template-columns:1fr;} .hero{padding-top:140px;}}
+  @media (max-width:640px){.hero-grid{grid-template-columns:1fr;} .hero{padding-top:48px;}}
 
   .tiktok-embed-wrap{
     background:#ffffff;
@@ -348,7 +344,6 @@
 </header>
 
 <div class="car-strip">
-  <div class="road-line"></div>
   <img src="car-drive.png" alt="Chris Quirarte's branded car" class="driving-car">
 </div>
 
