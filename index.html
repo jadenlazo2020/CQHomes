@@ -137,13 +137,13 @@
   .hero{
     background:var(--navy); color:var(--white); position:relative; overflow:hidden;
   }
-  .hero-grid{display:grid; grid-template-columns:1.1fr 0.9fr; gap:32px; align-items:end; position:relative; z-index:2;}
-  .hero-copy{padding:64px 0 80px;}
-  .hero-kicker{font-size:17px; color:rgba(255,255,255,0.75); margin-bottom:18px;}
-  .hero h1{font-size:clamp(44px,5.6vw,76px); font-weight:700; text-transform:uppercase; line-height:0.95; letter-spacing:0.01em; max-width:14ch;}
-  .hero .lede{font-size:19px; color:rgba(255,255,255,0.82); margin-top:26px; max-width:46ch;}
-  .hero-ctas{display:flex; gap:12px; margin-top:36px; flex-wrap:wrap;}
-  .hero-facts{display:flex; flex-wrap:wrap; gap:14px 36px; margin-top:44px; padding-top:24px; border-top:1px solid rgba(255,255,255,0.18); font-size:15px; color:rgba(255,255,255,0.72);}
+  .hero-grid{display:grid; grid-template-columns:1fr 1fr; gap:24px; align-items:end; position:relative; z-index:2;}
+  .hero-copy{padding:48px 0 52px;}
+  .hero-kicker{font-size:16px; color:rgba(255,255,255,0.75); margin-bottom:12px;}
+  .hero h1{font-size:clamp(40px,4.4vw,60px); font-weight:700; text-transform:uppercase; line-height:0.95; letter-spacing:0.01em; max-width:17ch;}
+  .hero .lede{font-size:18px; color:rgba(255,255,255,0.82); margin-top:18px; max-width:46ch;}
+  .hero-ctas{display:flex; gap:12px; margin-top:26px; flex-wrap:wrap;}
+  .hero-facts{display:flex; flex-wrap:wrap; gap:14px 36px; margin-top:30px; padding-top:18px; border-top:1px solid rgba(255,255,255,0.18); font-size:15px; color:rgba(255,255,255,0.72);}
   .hero-facts strong{display:block; color:var(--white); font-weight:600; font-size:16px;}
 
   /* the car-wrap stripe, the signature graphic */
@@ -154,11 +154,11 @@
     opacity:0.95;
   }
   .hero-figure{position:relative; align-self:end;}
-  .hero-figure img{width:100%; max-width:480px; margin-left:auto; position:relative; z-index:2; filter:drop-shadow(0 20px 40px rgba(0,0,0,0.35));}
+  .hero-figure img{width:100%; max-width:540px; margin:0 auto; aspect-ratio:1/1; object-fit:cover; object-position:bottom; position:relative; z-index:2; filter:drop-shadow(0 20px 40px rgba(0,0,0,0.35));}
   @media (max-width:860px){
     .hero-grid{grid-template-columns:1fr;}
     .hero-copy{padding:56px 0 8px;}
-    .hero-figure img{max-width:340px; margin:0 auto; aspect-ratio:760/760; object-fit:cover; object-position:bottom;}
+    .hero-figure img{max-width:340px;}
     .stripe{width:130%; right:-15%; bottom:10%; height:90px;}
   }
 
