@@ -249,9 +249,15 @@
   @media (max-width:860px){.testi-grid{grid-template-columns:1fr;}}
 
   /* ---------- TikTok ---------- */
-  .feed-head{display:flex; justify-content:space-between; align-items:flex-end; gap:24px; flex-wrap:wrap; margin-bottom:40px;}
-  .feed-head .section-intro{margin-bottom:0;}
-  .tiktok-embed-wrap{background:var(--white); border:1px solid var(--line); border-radius:10px; padding:20px; min-height:240px; overflow:hidden;}
+  .feed-grid{display:grid; grid-template-columns:0.75fr 1.25fr; gap:56px; align-items:center;}
+  .feed-grid .section-intro{margin-bottom:28px;}
+  .tiktok-embed{margin:0 !important; max-width:100% !important; min-width:0 !important; min-height:300px;}
+  .tiktok-embed .tt-fallback{
+    display:flex; align-items:center; justify-content:center; min-height:300px;
+    background:var(--white); border:1px solid var(--line); border-radius:10px; color:var(--slate);
+  }
+  .tiktok-embed .tt-fallback a{color:var(--navy); font-weight:600;}
+  @media (max-width:860px){.feed-grid{grid-template-columns:1fr; gap:28px;}}
 
   /* ---------- Contact ---------- */
   .contact-grid{display:grid; grid-template-columns:0.9fr 1.1fr; gap:64px; align-items:start;}
@@ -521,16 +527,20 @@
 
 <section class="section bg-paper" id="latest">
   <div class="wrap">
-    <div class="feed-head">
-      <div class="section-intro">
-        <h2>Latest listings and updates</h2>
-        <p>New listings, market updates, and behind-the-scenes, posted on TikTok.</p>
+    <div class="feed-grid">
+      <div>
+        <div class="section-intro">
+          <h2>Latest listings and updates</h2>
+          <p>New listings, market updates, and behind-the-scenes, posted on TikTok.</p>
+        </div>
+        <a href="https://www.tiktok.com/@_chrisquirarte21" target="_blank" rel="noopener" class="btn btn-outline">Follow @_chrisquirarte21</a>
       </div>
-      <a href="https://www.tiktok.com/@_chrisquirarte21" target="_blank" rel="noopener" class="btn btn-outline">Follow @_chrisquirarte21</a>
-    </div>
-    <div class="tiktok-embed-wrap">
-      <div class="sk-tiktok-feed" data-embed-id="25706888"></div>
-      <script src="https://widgets.sociablekit.com/tiktok-feed/widget.js" defer></script>
+      <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@_chrisquirarte21" data-unique-id="_chrisquirarte21" data-embed-type="creator">
+        <section class="tt-fallback">
+          <a target="_blank" rel="noopener" href="https://www.tiktok.com/@_chrisquirarte21?refer=creator_embed">Watch Chris's latest videos on TikTok</a>
+        </section>
+      </blockquote>
+      <script async src="https://www.tiktok.com/embed.js"></script>
     </div>
   </div>
 </section>
