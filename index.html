@@ -210,9 +210,9 @@
   .car-band-grid{display:grid; grid-template-columns:0.8fr 1.2fr; gap:32px; align-items:center;}
   .car-band h2{font-size:clamp(32px,3.6vw,44px);}
   .car-band p{color:rgba(255,255,255,0.75); margin-top:12px;}
-  .car-road{position:relative; padding-bottom:14px;}
-  .car-road::after{content:""; position:absolute; left:-50vw; right:-50vw; bottom:0; height:2px; background:repeating-linear-gradient(90deg, rgba(255,255,255,0.3) 0 28px, transparent 28px 52px);}
-  .car-road img{width:100%; max-width:620px; margin-left:auto;}
+  .car-road{position:relative;}
+  .car-road::after{content:""; position:absolute; left:-50vw; right:-50vw; bottom:9px; height:2px; background:repeating-linear-gradient(90deg, rgba(255,255,255,0.3) 0 28px, transparent 28px 52px);}
+  .car-road img{width:100%; max-width:620px; margin-left:auto; position:relative; z-index:1;}
   .js .car-road img{transform:translateX(110vw);}
   .js .car-road.in img{transform:translateX(0); transition:transform 2.2s cubic-bezier(.16,.84,.3,1);}
   @media (max-width:860px){.car-band-grid{grid-template-columns:1fr;}}
@@ -457,7 +457,7 @@
       <p>Spot the car around town? Wave, or give me a call.</p>
     </div>
     <div class="car-road">
-      <img src="car-drive.png" alt="Chris Quirarte's car wrapped with his London Properties branding" width="1000" height="357" loading="lazy">
+      <img src="car-drive.png" alt="Chris Quirarte's car wrapped with his London Properties branding" width="985" height="361" loading="lazy">
     </div>
   </div>
 </section>
