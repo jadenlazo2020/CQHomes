@@ -327,11 +327,11 @@
   /* ---------- Buyer guide pop-up ---------- */
   .guide-modal{
     border:0; padding:0; border-radius:12px; background:transparent;
-    width:calc(100% - 32px); max-width:540px; max-height:calc(100dvh - 32px); margin:auto;
+    width:calc(100% - 32px); max-width:540px; max-height:calc(100vh - 32px); max-height:calc(100dvh - 32px); margin:auto;
     overflow:visible;
   }
   .guide-modal::backdrop{background:rgba(14,26,53,0.7);}
-  .guide-modal .contact-form{max-height:calc(100dvh - 32px); overflow-y:auto; position:relative; box-shadow:0 30px 60px -20px rgba(0,0,0,0.5);}
+  .guide-modal .contact-form{max-height:calc(100vh - 32px); max-height:calc(100dvh - 32px); overflow-y:auto; position:relative; box-shadow:0 30px 60px -20px rgba(0,0,0,0.5);}
   .guide-modal[open]{animation:guide-in .22s ease-out;}
   @keyframes guide-in{from{opacity:0; transform:translateY(12px);}}
   .guide-close{
@@ -823,7 +823,6 @@
   };
   document.querySelectorAll('[data-open-guide]').forEach(b => b.addEventListener('click', () => {
     setMenu(false);
-    showGuideStep(false);
     guideModal.showModal();
   }));
   guideModal.querySelectorAll('[data-close-guide]').forEach(b => b.addEventListener('click', () => guideModal.close()));
@@ -833,7 +832,7 @@
   });
   handleForm(guideForm, document.getElementById('guide-status'), () => {
     showGuideStep(true);
-    guideDone.querySelector('button').focus();
+    if (guideModal.open) guideDone.querySelector('button').focus();
   });
 </script>
 
