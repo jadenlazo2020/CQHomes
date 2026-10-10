@@ -327,11 +327,12 @@
   /* ---------- Buyer guide pop-up ---------- */
   .guide-modal{
     border:0; padding:0; border-radius:12px; background:transparent;
-    width:calc(100% - 32px); max-width:540px; max-height:calc(100vh - 32px); max-height:calc(100dvh - 32px); margin:auto;
+    width:calc(100% - 32px); max-width:540px; max-height:calc(100% - 32px); margin:auto;
     overflow:visible;
   }
+  .guide-modal[open]{display:flex; flex-direction:column;}
   .guide-modal::backdrop{background:rgba(14,26,53,0.7);}
-  .guide-modal .contact-form{max-height:calc(100vh - 32px); max-height:calc(100dvh - 32px); overflow-y:auto; position:relative; box-shadow:0 30px 60px -20px rgba(0,0,0,0.5);}
+  .guide-modal .contact-form{min-height:0; overflow-y:auto; position:relative; box-shadow:0 30px 60px -20px rgba(0,0,0,0.5);}
   .guide-modal[open]{animation:guide-in .22s ease-out;}
   @keyframes guide-in{from{opacity:0; transform:translateY(12px);}}
   .guide-close{
@@ -719,7 +720,7 @@
     <input type="checkbox" name="botcheck" class="hidden-field" tabindex="-1" autocomplete="off" aria-hidden="true">
     <div class="field guide-step">
       <label for="gf-name">Name</label>
-      <input id="gf-name" name="name" type="text" autocomplete="name" required>
+      <input id="gf-name" name="name" type="text" autocomplete="name" required autofocus>
       <span class="err">Enter your name.</span>
     </div>
     <div class="field-row guide-step">
@@ -827,10 +828,14 @@
   }));
   guideModal.querySelectorAll('[data-close-guide]').forEach(b => b.addEventListener('click', () => guideModal.close()));
   guideModal.addEventListener('click', e => { if (e.target === guideModal) guideModal.close(); });
+  const guideStatus = document.getElementById('guide-status');
   guideModal.addEventListener('close', () => {
-    if (!guideDone.hidden) { guideForm.reset(); guideForm.classList.remove('was-validated'); showGuideStep(false); }
+    guideForm.classList.remove('was-validated');
+    guideStatus.textContent = '';
+    guideStatus.className = 'form-status';
+    if (!guideDone.hidden) { guideForm.reset(); showGuideStep(false); }
   });
-  handleForm(guideForm, document.getElementById('guide-status'), () => {
+  handleForm(guideForm, guideStatus, () => {
     showGuideStep(true);
     if (guideModal.open) guideDone.querySelector('button').focus();
   });
